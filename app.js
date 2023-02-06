@@ -67,9 +67,9 @@ app.route("/login")
         });
     });
 
-app.get("/logout", function(req, res){
-    req.logout(function(err){
-        if(err){
+app.get("/logout", function (req, res) {
+    req.logout(function (err) {
+        if (err) {
             console.log(err);
         }
     });
@@ -94,13 +94,15 @@ app.route("/register")
         });
     });
 
-app.get("/secrets", function (req, res) {
-    if (req.isAuthenticated()) {
-        res.render("secrets");
-    } else {
-        res.redirect("/login");
-    }
-});
+app.route("/secrets")
+
+    .get(function (req, res) {
+        if (req.isAuthenticated()) {
+            res.render("secrets");
+        } else {
+            res.redirect("/login");
+        }
+    });
 
 app.listen(3000, function () {
     console.log("Server started on port 3000");
